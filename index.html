@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Opettajasivu</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			font-family: 'Montserrat', sans-serif;;
+			background-color: #444654;
+			color: #ffffff;
+			padding: 0;
+			margin: 0;
+			overflow: hidden;
+		}
+
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			padding: 20px;
+			animation: fadeIn 0.5s ease-in-out forwards;
+			opacity: 0; /* Set initial opacity to 0 */
+		}
+
+		h1 {
+			margin-top: 0;
+		}
+		
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 100%;
+			max-width: 400px;
+			margin-top: 20px;
+		}
+
+		.form-group {
+			display: flex;
+			flex-direction: column;
+			margin-bottom: 20px;
+			width: 100%;
+		}
+
+		.form-group label {
+			display: none;
+		}
+
+		.form-group input {
+			padding: 10px;
+			font-size: 16px;
+			border-radius: 5px;
+			border: 0px solid #ccc;
+			background-color: #353641;
+			color: #fff;
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		.form-group input:focus {
+			outline: none;
+			border: 0px solid 353641;
+		}
+
+		.form-group input[type="submit"] {
+			background-color: #fae69e;
+			color: #202123;
+			cursor: pointer;
+			transition: all 0.2s ease;
+			border: none;
+			border-radius: 5px;
+			padding: 10px 20px;
+			font-size: 16px;
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		.form-group input[type="submit"]:hover {
+			background-color: #343541;
+			color: #fae69e;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			border: none;
+			border-radius: 5px;
+			padding: 10px 20px;
+			font-size: 16px;
+			width: 100%;
+			box-sizing: border-box;
+		}
+		
+		@media only screen and (max-width: 600px) {
+  .container {
+    height: auto;
+    padding: 10px;
+  }
+  form {
+    max-width: none;
+  }
+}
+
+.form-group input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 24px;
+  }
+  .form-group input[type="submit"] {
+    font-size: 20px;
+  }
+}
+
+		
+		/* Add the fade-in animation */
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+
+	</style>
+</head>
+<body>
+		<div class="container">
+		<h1>Kirjaudu</h1>
+		<form action="Sivu2.html" method="post" onsubmit="return auth()">
+			<div class="form-group">
+				<label for="username">Username:</label>
+				<input type="text" id="username" name="username" placeholder="Sähköposti" required>
+			</div>
+			<div class="form-group">
+				<label for="password">Password:</label>
+				<input type="password" id="password" name="password" placeholder="Salasana" required>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Kirjaudu"/>
+			</div>
+			<div id="error-message" style="display:none; color:#ff3030; font-weight:bold; margin-top:10px;">
+				Väärä sähköposti tai salasana
+			</div>
+		</form>
+	</div> 
+
+	<script>
+		window.history.pushState(null, "", window.location.href);
+	window.onpopstate = function() {
+		window.history.pushState(null, "", window.location.href);
+	};
+		function auth() {
+	// Get the username and password inputs
+	var username = document.getElementById('username').value;
+	var password = document.getElementById('password').value;
+
+	// Hardcoded test account
+	if (username === 'admin' && password === 'helmersson1') {
+		return true; // allow form submission
+	} else {
+		var errorMessage = document.getElementById('error-message');
+		errorMessage.style.display = 'block';
+		return false; // prevent form submission
+	}
+}
+
+	</script>
+</body>
+</html>
